@@ -1,6 +1,7 @@
 package com.auth.jwt.jwtspring.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "users")
@@ -21,6 +22,9 @@ public class User {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @ManyToMany
+    private Collection<Role> roles;
 
     public User(){
 
