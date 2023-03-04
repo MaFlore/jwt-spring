@@ -1,6 +1,7 @@
 package com.auth.jwt.jwtspring.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -23,8 +24,8 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @ManyToMany
-    private Collection<Role> roles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles = new ArrayList<>();
 
     public User(){
 
@@ -75,6 +76,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
